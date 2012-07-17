@@ -1,6 +1,6 @@
 # CurrentMe
 
-TODO: Write a gem description
+CurrentMe possesses a current user by a session
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Coming soon
 
 ## Contributing
 

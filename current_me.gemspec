@@ -4,9 +4,9 @@ require File.expand_path('../lib/current_me/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Tagaki Aki"]
   gem.email         = ["aki.hosecarioka@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{possess a current user}
+  gem.summary       = %q{CurrentMe possesses a current user by a session}
+  gem.homepage      = "https://github.com/akiinyo/current_me"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
