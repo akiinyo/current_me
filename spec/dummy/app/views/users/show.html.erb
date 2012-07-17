@@ -1,0 +1,5 @@
+<%= "Welcom #{@user.name} さん" %>
+
+<% if me? %>
+  <%= link_to 'Logout', :session, method: 'delete' %>
+  <%= link_to 'Room', room_path %>
