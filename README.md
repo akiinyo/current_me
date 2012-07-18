@@ -22,32 +22,32 @@ Or install it yourself as:
 
 * When signing, use the `me=`
 
-      self.me = user
+        self.me = user
 
 * To Transition to designated page if a user isn't signed in, use the `me!`
 
-      me! signin_path
+        me! signin_path
 
 * When redirect to the source before `me!`, use the `come_from`
 
-       redirect_to come_from
+        redirect_to come_from
 
 * When signing out, use the `bye`
 
-      def destroy
-        bye
-        redirect_to :root
-      end
+        def destroy
+          bye
+          redirect_to :root
+        end
 
 ### Controllers and Views
 
 * If current signed-in user, `me` is available
 
-      Welcome <%= me.name %>
+        Welcome <%= me.name %>
 
 * To verify if a user is signed in, use the `me?`
 
-       <% if me? %>
+        <% if me? %>
 
 ## Contributing
 
