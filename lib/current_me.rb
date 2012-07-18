@@ -2,6 +2,12 @@ require "current_me/version"
 require File.join(File.dirname(__FILE__), 'current_me', 'railtie') if defined?(Rails::Railtie)
 
 module CurrentMe
+  extend ActiveSupport::Concern
+
+  included do
+    helper_method :me, :me?
+  end
+
   def me
     if id = session[:me]
       @me ||= User.find(id)
