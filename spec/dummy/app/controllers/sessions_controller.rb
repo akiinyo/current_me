@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_name(params[:name])
     if user
-      me =  user
+      self.me =  user
       redirect_to come_from || user
     else
       render 'new'
