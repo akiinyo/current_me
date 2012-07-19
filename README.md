@@ -23,6 +23,7 @@ Or install it yourself as:
 * When signing, use the `me=`
 
         self.me = user
+(※`user` needs to be a user model)
 
 * To Transition to designated page if a user isn't signed in, use the `me!`
 
