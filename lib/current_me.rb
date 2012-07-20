@@ -22,10 +22,14 @@ module CurrentMe
 
   def me!(url)
     unless me?
-      session[:come_from] = request.fullpath
+      session[:origin] = request.fullpath
 
       redirect_to url
     end
+  end
+
+  def sign_in(user)
+    self.me = user
   end
 
   def me=(user)
@@ -35,11 +39,7 @@ module CurrentMe
     @me = user
   end
 
-  def bye
+  def sign_out
     self.me = nil
-  end
-
-  def come_from
-    session[:come_from]
   end
 end

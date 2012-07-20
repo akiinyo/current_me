@@ -6,7 +6,7 @@ describe SessionsController do
 
   describe 'destroy' do
     before {
-      controller.me = user
+      controller.sign_in user
       delete :destroy, {id: user.id}
     }
 
