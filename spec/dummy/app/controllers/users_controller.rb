@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authenticate, only: :show
+
   def new
     @user = User.new
   end
@@ -15,5 +17,11 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  private
+
+  def authenticate
+    head :forbidden unless me?
   end
 end

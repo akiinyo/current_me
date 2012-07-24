@@ -9,8 +9,8 @@ module CurrentMe
   end
 
   def me
-    if id = session[:me]
-      @me ||= User.find(id)
+    if !request.ssl? || cookies.signed[:secure_me] == "secure\##{session[:me]}"
+      @me ||= User.find(session[:me]) if session[:me]
     end
   rescue ActiveRecord::RecordNotFound
     self.me = nil
@@ -31,12 +31,16 @@ module CurrentMe
   def me=(user)
     reset_session
 
-    session[:me] = user.id if user
+    if user
+      session[:me] = user.id
+      cookies.signed[:secure_me] = {secure: true, value: "secure\##{user.id}"}
+    end
     @me = user
   end
 
   def bye
     self.me = nil
+    cookies.delete :secure_me
   end
 
   def come_from

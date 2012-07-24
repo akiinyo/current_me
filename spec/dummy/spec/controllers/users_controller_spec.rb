@@ -5,12 +5,30 @@ describe UsersController do
   let(:user) { User.create!(name: 'akiinyo') }
 
   describe 'me' do
-    before {
-      post :create, user: {id: user.id, name: user.name}
-    }
+    describe 'side jacking protection' do
+      before do
+        controller.me = user
+        request.stub!(:ssl?).and_return true
+      end
 
-    specify 'meが正しく設定されていること' do
-      controller.me.name.should == 'akiinyo'
+      context 'correct secure_me' do
+        before { get :show, {id: user.id} }
+
+        specify 'ログインしているユーザが引けること' do
+          response.should be_success
+        end
+      end
+
+      context 'invalid secure_me' do
+        before do
+          cookies.signed[:secure_me] = {value: 'fake'}
+          get :show, {id: user.id}
+        end
+
+        specify 'ユーザが引けずにアクセス拒否されること' do
+          response.should be_forbidden
+        end
+      end
     end
   end
 end
