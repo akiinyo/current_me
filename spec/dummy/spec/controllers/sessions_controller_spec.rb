@@ -5,12 +5,23 @@ describe SessionsController do
   let!(:user) { User.create!(name: 'akiinyo') }
 
   describe 'side jacking protection' do
-    before do
-      post :create, name: user.name
+    context 'me=(user)' do
+      before { post :create, name: user.name }
+
+      specify do
+        cookies.signed[:secure_me].should be_nil
+      end
     end
 
-    specify do
-      cookies.signed[:secure_me].should == "secure\##{user.id}"
+    context 'secure_me=(user)' do
+      before do
+        post :create, name: user.name
+        controller.secure_me = user
+      end
+
+      specify do
+        cookies.signed[:secure_me].should == "secure\##{user.id}"
+      end
     end
   end
 

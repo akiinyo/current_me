@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      self.me = @user
+      self.secure_me = @user
       redirect_to @user
     else
       render 'new'
