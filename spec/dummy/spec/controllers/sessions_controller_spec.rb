@@ -15,10 +15,10 @@ describe SessionsController do
   end
 
   describe 'destroy' do
-    before {
+    before do
       controller.me = user
       delete :destroy, {id: user.id}
-    }
+    end
 
     specify 'meがいなくなること' do
       controller.me?.should be_false
