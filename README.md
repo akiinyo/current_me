@@ -20,22 +20,18 @@ Or install it yourself as:
 
 ### Controllers
 
-* When signing, use the `me=`
+* When signing, use the `sign_in`
 
-        self.me = user
+        sign_in user
 
 * To Transition to designated page if a user isn't signed in, use the `me!`
 
         me! signin_path
 
-* When redirect to the source before `me!`, use the `come_from`
-
-        redirect_to come_from
-
-* When signing out, use the `bye`
+* When signing out, use the `sign_out`
 
         def destroy
-          bye
+          sign_out
           redirect_to :root
         end
 
