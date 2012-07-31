@@ -1,7 +1,5 @@
 class RoomsController < ApplicationController
-  before_filter do |c|
-    c.me!(root_url)
-  end
+  before_filter :authenticate!
 
   def index
   end

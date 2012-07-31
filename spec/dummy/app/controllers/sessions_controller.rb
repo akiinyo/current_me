@@ -3,17 +3,18 @@ class SessionsController < ApplicationController
   end
 
   def create
+    origin = session[:origin]
     user = User.find_by_name(params[:name])
     if user
-      self.me =  user
-      redirect_to come_from || user
+      sign_in user
+      redirect_to origin || user
     else
       render 'new'
     end
   end
 
   def destroy
-    bye
+    sign_out
     redirect_to root_path
   end
 end

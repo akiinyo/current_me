@@ -9,7 +9,7 @@ describe RoomsController do
 
     context 'ログインしている場合' do
       before {
-        controller.me = user
+        controller.sign_in user
         get :index
       }
 
