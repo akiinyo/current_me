@@ -21,11 +21,7 @@ module CurrentMe
   end
 
   def me!(url)
-    unless me?
-      session[:origin] = request.fullpath
-
-      redirect_to url
-    end
+    redirect_to url unless me?
   end
 
   def sign_in(user)
