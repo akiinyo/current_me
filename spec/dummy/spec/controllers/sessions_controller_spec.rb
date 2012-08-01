@@ -4,6 +4,16 @@ require 'spec_helper'
 describe SessionsController do
   let!(:user) { User.create!(name: 'akiinyo') }
 
+  describe 'side jacking protection' do
+    before do
+      post :create, name: user.name
+    end
+
+    specify do
+      cookies.signed[:secure_me].should == "secure\##{user.id}"
+    end
+  end
+
   describe 'destroy' do
     before {
       controller.sign_in user
