@@ -2,9 +2,17 @@
 require 'spec_helper'
 
 describe UsersController do
-  let(:user) { User.create!(name: 'akiinyo') }
+  describe 'sign up' do
+    before {post :create, user: {name: 'akiinyo'} }
+
+    specify 'sign-upできること' do
+      controller.me.name.should == 'akiinyo'
+    end
+  end
 
   describe 'me' do
+    let(:user) { User.create!(name: 'akiinyo') }
+
     describe 'side jacking protection' do
       before do
         controller.sign_in user
