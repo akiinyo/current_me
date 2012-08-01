@@ -8,18 +8,16 @@ describe RoomsController do
     subject &:response
 
     context 'ログインしている場合' do
-      before {
+      before do
         controller.sign_in user
         get :index
-      }
+      end
 
       it { should render_template('index') }
     end
 
     context 'ログインしていない場合' do
-      before {
-        get :index
-      }
+      before { get :index }
 
       it { should redirect_to(root_url) }
     end
